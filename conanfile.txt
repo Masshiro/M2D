@@ -1,0 +1,11 @@
+[requires]
+gtest/1.8.1
+yaml-cpp/0.6.3
+jsoncpp/1.9.1
+spdlog/1.8.0
+fmt/7.1.2
+
+
+
+[generators]
+cmake

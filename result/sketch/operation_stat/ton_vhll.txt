@@ -1,0 +1,4 @@
+rebase:1.2e-06, mem access:4.7834378, swap-in:0, swap-out:0, heap update:0, heap query:0, sketch update:0.051646, sketch query:0.051646, hash:12.206584
+rebase:1.2e-06, mem access:4.783656, swap-in:0, swap-out:0, heap update:0, heap query:0, sketch update:0.0516584, sketch query:0.0516584, hash:12.2066336
+rebase:1e-06, mem access:4.7835897, swap-in:0, swap-out:0, heap update:0, heap query:0, sketch update:0.0516602, sketch query:0.0516602, hash:12.2066408
+rebase:1.3e-06, mem access:4.7837753, swap-in:0, swap-out:0, heap update:0, heap query:0, sketch update:0.0516787, sketch query:0.0516787, hash:12.2067148

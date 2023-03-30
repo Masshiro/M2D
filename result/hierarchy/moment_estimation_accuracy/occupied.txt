@@ -1,0 +1,1 @@
+This file aims to occupy the directory position while using git.

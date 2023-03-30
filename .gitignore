@@ -1,0 +1,16 @@
+*__pycache__*
+
+rsync.sh
+.clangd/
+.cache
+log/
+build/
+cmake-build-debug/
+cmake-build-release/
+.idea/
+.vscode/
+latex.out/
+data/
+.tasks
+
+compile_commands.json
