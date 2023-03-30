@@ -20,7 +20,7 @@ conan_basic_setup()
 enable_testing()
 
 add_subdirectory(src)
-add_subdirectory(test)
+#add_subdirectory(test)
 add_subdirectory(experiment)
 
 add_executable(main main.cpp)

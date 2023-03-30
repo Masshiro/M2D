@@ -1,5 +1,4 @@
-#include "../../src/sketch/Aton_vHLL.hpp"
-#include "../../src/sketch/Aton_vHLL_AVX.hpp"
+
 #include "../../src/sketch/On_vHLL.hpp"
 #include "../../src/sketch/On_vLLC.hpp"
 #include "../../src/sketch/Ton_vHLL.hpp"

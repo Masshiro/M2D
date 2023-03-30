@@ -14,7 +14,7 @@
 using namespace std;
 
 const int sys_name_idx = 0;
-const std::string DATA_DIR = "../../data/caida/";
+const std::string DATA_DIR = "../../data/";
 vector<string> sys_names = {"UnivMon", "LUS", "M2D"};
 
 const int TOP_K = 100;
@@ -29,7 +29,7 @@ std::random_device rd;
 int main() {
     //// load tuples
     vector<pair<string, string>> tuples;
-    string data_file_name = fmt::format("{}equinix-chicago.dirA.20160121-133300.UTC.anon.pcap.gz.uniq", DATA_DIR);
+    string data_file_name = fmt::format("{}caida.txt", DATA_DIR);
     ifstream data_file(data_file_name);
     if (!data_file) {
         spdlog::error("open {} fail", data_file_name);
@@ -65,9 +65,4 @@ int main() {
     double m2d_res2 = estimator4.update(tuples);
     cout << double(tuples.size()) / m2d_res2 / 1000000 << endl;
 
-
-
-
-
-//    cout << "pkt cnt: " << tuples.size() << tuples.back().first << tuples.back().second << endl;
 }

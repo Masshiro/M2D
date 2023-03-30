@@ -18,8 +18,8 @@
 #include <climits>
 #include <bitset>
 
+#include "../sketch/HLL.hpp"
 #include "../sketch/On_vHLL.hpp"
-#include "../sketch/Ton_vHLL.hpp"
 #include "../utils/HierarchyUtils.hpp"
 #include "../filter/MinheapFilter.hpp"
 #include "../filter/MapImplFilter.hpp"
@@ -37,6 +37,7 @@ namespace hierarchy{
         SKETCH ** sketches;
         hierarchy::MapImplFilter<string> filters;
         unordered_map<std::string, std::unordered_map<std::string, bool> > hash_table;
+        HLL * last_col;
 
         int* count_level_pkts;
 
@@ -77,6 +78,7 @@ namespace hierarchy{
                     sketches[j] = new SKETCH(sketch_stages, sketch_rows, sketch_cols, seed);
                 }
             }
+            last_col = new HLL(sketch_rows, 0);
         }
 
         ~MomentEstimator() {
@@ -85,6 +87,7 @@ namespace hierarchy{
             }
             delete sketches;
             delete count_level_pkts;
+            delete last_col;
         }
 
         int memory_usage_int_bits() {
@@ -172,6 +175,7 @@ namespace hierarchy{
 
     template<class SKETCH>
     void MomentEstimator<SKETCH>::update(string flow_id, string element_id) {
+        last_col->offerFlow(flow_id.c_str(), flow_id.length());
         if (m_level_count == 0) {
             if (m_hash_table_enable) {
                 update_hash_table(flow_id, element_id);
@@ -234,9 +238,12 @@ namespace hierarchy{
 
     template<class SKETCH>
     double MomentEstimator<SKETCH>::calculate_moment_power(double (*f)(double, uint8_t), uint8_t power) {
-//        if (power == 1 && m_level_count != 0) {
-//            return sketches[0]->getNHat();
-//        }
+        if (power == 0) {
+            return last_col->decodeFlow();
+        }
+        if (power == 1 && m_level_count != 0) {
+            return sketches[0]->getNHat();
+        }
         double moment = 0.0;
 
         if (m_hash_table_enable) {
